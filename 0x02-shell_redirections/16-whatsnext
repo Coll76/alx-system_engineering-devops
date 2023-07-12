@@ -1,2 +1,2 @@
 #!/bin/bash
-gref -iA 3 "root"
+gref -i-A 3 "root" /etc/passwd
