@@ -1,0 +1,1 @@
+The first thing I have done is to take a screenshot using Windows key + Shift + S then and saved to 0-first_9_tasks.png file then I have used the put command followed by the full path of the 0-first_9_tasks.png file to upload the file from my local machine to the sandbox environment
