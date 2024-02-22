@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-#deletes all the regular files (not the directories) with a .js extension
 find . -type f -name "*.js" -exec rm {} +
