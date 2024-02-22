@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#prints last 10 lines of /etc/passwd
+tail -10 /etc/passwd
