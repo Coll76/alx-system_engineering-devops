@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#copy of 6-stop_me_if_you_can script
+#kills the 7-highlander process instead of the 4-to_infinity_and_beyond one
+trap 'kill_highlander' TERM
+
+kill_highlander() {
+	# Find and kill the 7-highlander process
+	pkill -9 7-highlander
+}
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
