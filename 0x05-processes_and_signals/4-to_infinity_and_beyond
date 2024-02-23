@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#displays To infinity and beyond indefinitely
+#In between each iteration of the loop, add a sleep 2
+#sleep 2 pauses execution for 2 seconds
+i=1
+while ((i < 9)); do
+	echo "To infinity and beyond"
+	sleep 2
+done
