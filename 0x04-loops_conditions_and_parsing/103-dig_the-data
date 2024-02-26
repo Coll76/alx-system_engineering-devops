@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#groups visitors by IP and HTTP status code, and displays this data
+#The exact format must be
+#OCCURENCE_NUMBER IP HTTP_CODE
+#In list format
+#Ordered from the greatest to the lowest number of occurrences
+if [ "$#" -ne 1 ]; then
+	echo "Usage: $0 0x04-loops_conditions_and_parsing/apache-access.log"
+	exit 1
+fi
+
+log_file="$1"
+awk '{ print $1, $9 }' "$log_file" | sort | uniq -c | sort -nr | awk '{ print $1, $2, $3 }'
