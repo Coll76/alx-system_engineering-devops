@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#displays the content of the file /etc/passwd
+#Your script should only display:
+#username
+#user id
+#Home directory path for the user
+#You must use the while loop (for and until are forbidden)
+IFS=":"
+file="/etc/passwd"
+while IFS=: read -r user passwd uid gid info home shell; do
+	export passwd gid info shell
+	echo "$user:$uid:$home"
+done < "$file"
