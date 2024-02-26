@@ -4,4 +4,4 @@
 #in a list format
 #See example
 #must use awk
-awk '{print $1, $9}'  "apache-access (1).log"
+awk '{print $1, $9}'  "apache-access.log"
