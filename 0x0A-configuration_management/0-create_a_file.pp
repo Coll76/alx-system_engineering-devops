@@ -1,5 +1,6 @@
-#create a file
+# create a file
 # Define a file resource to create the file in /tmp
+
 file { '/tmp/school':
 ensure => present,
 content => "I love Puppet",
