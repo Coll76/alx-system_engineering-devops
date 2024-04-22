@@ -5,7 +5,7 @@
 #In list format
 #Ordered from the greatest to the lowest number of occurrences
 if [ "$#" -ne 1 ]; then
-	echo "Usage: $0 0x04-loops_conditions_and_parsing/apache-access.log"
+	echo "Usage: $0 apache-access.log"
 	exit 1
 fi
 
