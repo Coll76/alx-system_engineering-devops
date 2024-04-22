@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# makes this bash script portable
+echo "Hello World"
