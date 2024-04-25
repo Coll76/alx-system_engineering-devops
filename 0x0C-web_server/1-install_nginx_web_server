@@ -7,8 +7,8 @@
 # As an answer file, write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself)
 # You can’t use systemctl for restarting nginx
 
-sudo apt -y update
-sudo apt -y install nginx
+apt-get update-y
+apt-get install-y nginx
 
 echo "Hello World!" > /var/www/html/index.html
-sudo service nginx restart
+service nginx reload
