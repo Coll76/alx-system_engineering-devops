@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Update package lists
+apt-get update -y
+
+# Install nginx
+apt-get install -y nginx
+
+# Remove the default nginx configuration file
+rm /etc/nginx/sites-enabled/default
+
+# Create a new nginx configuration file
+cat > /etc/nginx/sites-available/default <<- EOM
+server {
+    listen 80 default_server;
+    root /var/www/html;
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+EOM
+
+# Create the HTML file that will be served
+echo "Hello World!" > /var/www/html/index.html
+
+# Reload nginx to apply the new configuration
+service nginx reload
