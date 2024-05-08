@@ -1,23 +1,7 @@
 #!/usr/bin/env bash
-#configures an Ubuntu server with the below requirements.
+# configures an Ubuntu server with the below requirements.
+#Requirements:
 #localhost resolves to 127.0.0.2
-#facebook.com resolves to 8.8.8.8
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root. Use sudo."
-    exit 1
-fi
-# Set the new IP addresses in variables
-localhost_ip="127.0.0.2"
-facebook_ip="8.8.8.8"
-
-# Backup the original hosts file
-cp /etc/hosts /etc/hosts.bak
-
-# Modify the hosts fil
-sed -i "/^127.0.0.1[[:space:]]localhost/ s/$/ $localhost_ip/" /etc/hosts
-echo "$facebook_ip facebook.com" >> /etc/hosts
-
-# Display updated hosts file
-echo "Updated hosts file:"
-cat /etc/hosts
-echo "Configuration completed"
+# facebook.com resolves to 8.8.8.8
+echo "localhost 127.0.0.2">>/etc/hosts
+echo "facebook.com 8.8.8.8">>/etc/hosts
