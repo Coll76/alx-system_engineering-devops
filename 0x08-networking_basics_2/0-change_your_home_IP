@@ -3,5 +3,49 @@
 #Requirements:
 #localhost resolves to 127.0.0.2
 # facebook.com resolves to 8.8.8.8
-echo "localhost 127.0.0.2">>/etc/hosts
-echo "facebook.com 8.8.8.8">>/etc/hosts
+#echo "localhost 127.0.0.2">>/etc/hosts
+#echo "facebook.com 8.8.8.8">>/etc/hosts
+#!/bin/bash
+
+# Step 1: Configure localhost to resolve to 127.0.0.2
+echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
+
+# Step 2: Configure facebook.com to resolve to 8.8.8.8
+echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
+
+# Step 3: Create a Docker container to run the checker
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Create a Dockerfile
+cat <<EOF | sudo tee /tmp/Dockerfile
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y iputils-ping
+CMD ["ping", "-c", "10", "facebook.com"]
+EOF
+
+# Build the Docker image
+sudo docker build -t my-pinger /tmp
+
+# Run the Docker container
+sudo docker run -d --name my-pinger my-pinger
+
+# Step 4: Create a script to change the home IP to 127.0.0.2
+cat <<EOF | sudo tee /tmp/change_home_ip.sh
+#!/bin/bash
+sed -i 's/127.0.1.1/127.0.0.2/g' /etc/hosts
+EOF
+
+# Make the script executable
+sudo chmod +x /tmp/change_home_ip.sh
+
+# Test the configuration
+echo "Testing the configuration..."
+ping -c 2 localhost
+ping -c 2 facebook.com
+sudo /tmp/change_home_ip.sh
+echo "Testing the configuration after changing the home IP..."
+ping -c 2 localhost
+ping -c 2 facebook.com
